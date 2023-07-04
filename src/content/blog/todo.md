@@ -4,7 +4,7 @@ author: TriFullKim
 pubDatetime: 2023-07-05T02:00:00+09:00
 postSlug: todo-list
 featured: false
-draft: true
+draft: false
 tags:
   - todo
 ogImage: ""
