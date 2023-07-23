@@ -24,21 +24,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   <main id="main-content">
     <section id="hero">
       <h1>TriFullKim</h1>
-      <p>
-        흔한 학부연구생
-      </p>
-      <p>
-        반갑습니다!<br>
-        코딩, 영상/디자인, 음악 관심을 두고 있고<br>
-        현재 글쓰는법, 영어, Algorithm, Computer Graphics를 공부하고 있습니다.<br>
-        자세한 것은
-        <LinkButton
-          className="hover:text-skin-accent underline underline-offset-4 decoration-dashed"
-          href="https://www.aimlabfirst.com/836cc384-6211-47d8-9228-64a18ffc5109"
-        >
-          Profile
-        </LinkButton>을 봐주세요 :]
-      </p>
       {
         // only display if at least one social link is enabled
         socialCount > 0 && (
