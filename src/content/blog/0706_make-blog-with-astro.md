@@ -4,7 +4,7 @@ author: TriFullKim
 pubDatetime: 2023-07-06T11:40:00+09:00
 postSlug: make blog with astro
 featured: false
-draft: false
+draft: true
 tags:
   - node framework
   - astro
