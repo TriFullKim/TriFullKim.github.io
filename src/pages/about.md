@@ -13,4 +13,4 @@ title: "About"
 
 ## 현재 글쓰는법, 영어, Algorithm, Computer Graphics를 공부하고 있습니다.<br>
 
-### 자세한 것은 [Profile](https://www.aimlabfirst.com/836cc384-6211-47d8-9228-64a18ffc5109)을 봐주세요!
+### 자세한 것은 [Profile](https://www.pnu-cvsp.com/members/taehoon)을 봐주세요!
