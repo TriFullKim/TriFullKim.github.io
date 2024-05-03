@@ -1,7 +1,7 @@
 import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
-  website: "http://blog.kth01.xyz/",
+  website: "http://blog.trifull.kim/",
   author: "Taehoon Kim",
   desc: "이것저것 그냥 블로그",
   title: "TriFullKim",
@@ -15,7 +15,7 @@ export const LOCALE = ["ko-KR"]; // set to [] to use the environment default
 export const LOGO_IMAGE = {
   enable: true,
   svg: true,
-  width: 203,
+  width: 65,
   height: 65,
 };
 
