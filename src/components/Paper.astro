@@ -1,0 +1,39 @@
+---
+const { frontmatter } = Astro.props;
+
+const year = Math.floor(frontmatter.pubDate / 100);
+const month = frontmatter.pubDate - year * 100;
+const date = new Date(year, month - 1);
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "short",
+}).format(date);
+
+const postscriptExist = !!frontmatter.postscript.length
+const categoryExist = !!frontmatter.category.length
+---
+
+<!-- title,me,auther,pubDate,confName,postscript,international -->
+<li class="text-xl font-extrabold ">{frontmatter.title}</li>
+<li class="test-sm text-gray-500">{frontmatter.author.join(", ")}</li>
+<li class="flex flex-row gap-2 flex-wrap pt-2">
+  <div class="font-extrabold">{frontmatter.confName}</div>
+  <div>{formattedDate}</div>
+  <!-- Draw When p.s. exist -->
+  <div class="flex max-sm:flex-wrap gap-1">
+    {
+      postscriptExist &&
+        frontmatter.postscript.map(data => (
+          <div class=`badge badge-primary ${!postscriptExist && "hidden"}`>{data}</div>
+        ))
+    }
+  </div>
+  <div class="flex max-sm:flex-wrap gap-1">
+    {
+      categoryExist &&
+        frontmatter.category.map(data => (
+          <div class=`badge ${!categoryExist && "hidden"}`>{data}</div>
+        ))
+    }
+  </div>
+</li>

@@ -1,128 +1,77 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import LinkButton from "@components/LinkButton.astro";
-import Hr from "@components/Hr.astro";
-import Card from "@components/Card";
-import Socials from "@components/Socials.astro";
-import getSortedPosts from "@utils/getSortedPosts";
-import slugify from "@utils/slugify";
-import { SOCIALS } from "@config";
-
-const posts = await getCollection("blog");
-
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-
-const socialCount = SOCIALS.filter(social => social.active).length;
+import Card from "../layouts/MainpageCard.astro";
+import Layout from "../layouts/Layout.astro";
+import Publication from "../widgets/Publication.astro";
 ---
 
-<Layout>
-  <Header />
-  <main id="main-content">
-    <section id="hero">
-      <h1>TriFullKim</h1>
-      {
-        // only display if at least one social link is enabled
-        socialCount > 0 && (
-          <div class="social-wrapper">
-            <div class="social-links">Social Links:</div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    <Hr />
-
-    {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>Featured</h2>
-            <ul>
-              {featuredPosts.map(({ data }) => (
-                <Card
-                  href={`/posts/${slugify(data)}`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              ))}
-            </ul>
-          </section>
-          <Hr />
-        </>
-      )
-    }
-
-    <section id="recent-posts">
-      <h2>Recent Posts</h2>
-      <ul>
-        {
-          sortedPosts.map(
-            ({ data }, index) =>
-              index < 4 && (
-                <Card
-                  href={`/posts/${slugify(data)}`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              )
-          )
-        }
-      </ul>
-      <div class="all-posts-btn-wrapper">
-        <LinkButton href="/posts">
-          All Posts
-          <svg xmlns="http://www.w3.org/2000/svg"
-            ><path
-              d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
-            ></path>
-          </svg>
-        </LinkButton>
-      </div>
-    </section>
-  </main>
-
-  <Footer />
+<Layout title="@trifullkim // Profile">
+	<main>
+		<div class="h-12"></div>
+		<h1 class="md:max-w-[800px] mx-auto">
+			<div
+				class="flex max-sm:flex-col gap-6 p-6 rounded-xl shadow-lg shadow-blue-950/50"
+			>
+				<img src="/tfk-w.svg" alt="white_logo" class="h-32" />
+				<div class="text-lg self-center">
+					<a
+						href="https://github.com/TriFullKim"
+						class="text-3xl font-extrabold underline underline-offset-3 hover:decoration-sky-400 content-center"
+						>@TriFullKim</a
+					>
+					<p>
+						반갑습니다!! 현재 학부연구생으로<u> 인공지능을 연구 </u>하고 있으며,
+						<strong> 서비스 출시(앱개발)에 관심 </strong>을 두고 공부 중 입니다.
+						디자인에도 관심을 갖고 있으며, 동아리/연구실 <strong>로고</strong>를
+						Adobe Illustrator와 같은 디자인 툴을 사용하여
+						<strong>제작</strong>한 경험이 있습니다.
+					</p>
+				</div>
+			</div>
+		</h1>
+		<div class="h-3"></div>
+		<Card title="Education">
+			<ul class="list-disc px-8">
+				<li>B.S. in Electrical Engineering , PKNU, Feb. 2021 – present.</li>
+			</ul>
+		</Card>
+		<Card title="Publication">
+			<Publication />
+		</Card>
+		<div class="h-3"></div>
+		<Card title="Design">
+			<ul class="flex flex-col gap-5 w-full pt-4">
+				<li class="flex flex-row gap-3">
+					<img
+						src="/EWG_white.png"
+						alt="EWG_LOGO"
+						class="w-56 object-scale-down"
+					/>
+					<div class="content-center">
+						<h2 class="text-xl font-extrabold">EWG Logo Design</h2>
+						<p>
+							국립부경대학교 <a
+								href="https://www.instagram.com/ewg.esports/"
+								class="link hover:text-sky-400">esports 중앙동아리 EWG</a
+							> 로고 제작
+						</p>
+					</div>
+				</li>
+				<div class="divider my-[-0.2rem]"></div>
+				<li class="flex flex-row gap-3">
+					<img src="/CVSP-white@3x.png" alt="EWG_LOGO" class="w-56" />
+					<div class="content-center">
+						<h2 class="text-xl font-extrabold">CVSP Lab. Logo Design</h2>
+						<p>
+							부산대학교 <a
+								href="https://www.instagram.com/ewg.esports/"
+								class="link hover:text-sky-400"
+								>Computer Vision & Singal Processing Lab.</a
+							> 로고 제작
+						</p>
+					</div>
+				</li>
+			</ul>
+		</Card>
+	</main>
+	<div class="h-24"></div>
 </Layout>
-
-<style>
-  /* ===== Hero Section ===== */
-  #hero {
-    @apply pb-6 pt-8;
-  }
-  #hero h1 {
-    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
-  }
-  #hero .rss-link {
-    @apply mb-6;
-  }
-  #hero .rss-icon {
-    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
-  }
-  #hero p {
-    @apply my-2;
-  }
-  .social-wrapper {
-    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
-  }
-  .social-links {
-    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
-  }
-
-  /* ===== Featured & Recent Posts Sections ===== */
-  #featured,
-  #recent-posts {
-    @apply pb-6 pt-12;
-  }
-  #featured h2,
-  #recent-posts h2 {
-    @apply text-2xl font-bold tracking-wide;
-  }
-  .all-posts-btn-wrapper {
-    @apply my-8 text-center;
-  }
-</style>
