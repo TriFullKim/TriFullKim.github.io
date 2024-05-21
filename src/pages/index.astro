@@ -9,7 +9,7 @@ import Publication from "../widgets/Publication.astro";
 		<div class="h-12"></div>
 		<h1 class="md:max-w-[800px] mx-auto">
 			<div
-				class="flex max-sm:flex-col gap-6 p-6 rounded-xl shadow-lg shadow-blue-950/50"
+				class="flex max-sm:flex-col gap-6 p-6 rounded-xl shadow-2xl shadow-blue-950/50"
 			>
 				<img src="/tfk-w.svg" alt="white_logo" class="h-32" />
 				<div class="text-lg self-center">
@@ -19,7 +19,7 @@ import Publication from "../widgets/Publication.astro";
 						>@TriFullKim</a
 					>
 					<p>
-						반갑습니다!! 현재 학부연구생으로<u> 인공지능을 연구 </u>하고 있으며,
+						반갑습니다!! 현재 학부연구생으로 <u>인공지능을 연구</u> 하고 있으며,
 						<strong> 서비스 출시(앱개발)에 관심 </strong>을 두고 공부 중 입니다.
 						디자인에도 관심을 갖고 있으며, 동아리/연구실 <strong>로고</strong>를
 						Adobe Illustrator와 같은 디자인 툴을 사용하여
@@ -39,8 +39,10 @@ import Publication from "../widgets/Publication.astro";
 		</Card>
 		<div class="h-3"></div>
 		<Card title="Design">
-			<ul class="flex flex-col gap-5 w-full pt-4">
-				<li class="flex flex-row gap-3">
+			<ul
+				class="flex flex-col gap-5 w-full pt-4 sm:place-items-start place-items-center"
+			>
+				<li class="flex flex-col sm:flex-row gap-3">
 					<img
 						src="/EWG_white.png"
 						alt="EWG_LOGO"
@@ -57,8 +59,12 @@ import Publication from "../widgets/Publication.astro";
 					</div>
 				</li>
 				<div class="divider my-[-0.2rem]"></div>
-				<li class="flex flex-row gap-3">
-					<img src="/CVSP-white@3x.png" alt="EWG_LOGO" class="w-56" />
+				<li class="flex flex-col sm:flex-row gap-3">
+					<img
+						src="/CVSP-white@3x.png"
+						alt="EWG_LOGO"
+						class="w-56 object-scale-down"
+					/>
 					<div class="content-center">
 						<h2 class="text-xl font-extrabold">CVSP Lab. Logo Design</h2>
 						<p>
