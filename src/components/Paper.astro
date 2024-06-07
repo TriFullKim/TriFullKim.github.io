@@ -9,31 +9,57 @@ const formattedDate = new Intl.DateTimeFormat("en-US", {
   month: "short",
 }).format(date);
 
+const highlightMe = (author=[],me="Taehoon Kim")=>{
+  let highlightAuthor = {}
+  for (let i = 0; i < author.length; i++) {
+    let authorElement = author[i];
+    if (authorElement.includes(me))
+      highlightAuthor[authorElement] = true;
+    else
+    highlightAuthor[authorElement] = false;
+  }
+
+  let innerHTML = ""
+  for (let key in highlightAuthor) {
+    if (true === highlightAuthor[key])
+      innerHTML += `<strong>${key}</strong> `;
+    else
+      innerHTML += `${key} `;
+  }
+
+  return innerHTML
+};
+
 const postscriptExist = !!frontmatter.postscript.length
 const categoryExist = !!frontmatter.category.length
 ---
-
-<!-- title,me,auther,pubDate,confName,postscript,international -->
-<li class="text-xl font-extrabold ">{frontmatter.title}</li>
-<li class="test-sm text-gray-500">{frontmatter.author.join(", ")}</li>
-<li class="flex flex-row gap-2 flex-wrap pt-2">
-  <div class="font-extrabold">{frontmatter.confName}</div>
+<li class="flex flex-row flex-wrap gap-1">
+  <div class="text-xl font-extrabold">{frontmatter.title}</div>
+  </li>
+  {/*https://docs.astro.build/en/basics/astro-syntax/#fragments*/}
+  <li class="test-sm text-gray-500">{<Fragment set:html={highlightMe(frontmatter.author,frontmatter.me)}/>}</li>
+  <li class="flex flex-row gap-2 flex-wrap pt-2">
+    <div class="font-extrabold">{frontmatter.confName}</div>
   <div>{formattedDate}</div>
   <!-- Draw When p.s. exist -->
   <div class="flex max-sm:flex-wrap gap-1">
     {
       postscriptExist &&
-        frontmatter.postscript.map(data => (
+        frontmatter.postscript.map((data: Date) => (
           <div class=`badge badge-primary ${!postscriptExist && "hidden"}`>{data}</div>
         ))
-    }
+        }
   </div>
   <div class="flex max-sm:flex-wrap gap-1">
     {
       categoryExist &&
-        frontmatter.category.map(data => (
+        frontmatter.category.map((data: Date) => (
           <div class=`badge ${!categoryExist && "hidden"}`>{data}</div>
         ))
     }
+  </div>
+  <div class="flex max-sm:flex-wrap gap-1">
+    <a href={frontmatter.codeUrl} class=`badge badge-outline ${frontmatter.codeUrl.length === 0 && "hidden"}`>Code</a>
+    <a href={frontmatter.paperUrl} class=`badge badge-outline ${frontmatter.paperUrl.length === 0 && "hidden"}`>Paper</a>
   </div>
 </li>
