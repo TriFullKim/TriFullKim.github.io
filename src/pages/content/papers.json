@@ -1,0 +1,48 @@
+{
+    "202307": [
+        {
+            "title": "휴먼 모션 생성을 통한 텍스트 기반 비디오 생성 알고리즘에 관한 연구",
+            "me": "김태훈",
+            "author": "김태훈*, 정다운*, 박재혁*, 공경보†",
+            "confName": "IEIE (대한전자공학회)",
+            "category": [
+                "Computer Vision",
+                "생성형 AI"
+            ],
+            "postscript": "여름학술대회",
+            "international": false,
+            "paperUrl": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11522273",
+            "codeUrl": ""
+        }
+    ],
+    "202310": {
+        "title": "Text-Based Video Generation With Human Motion and Controllable Camera",
+        "me": "Taehoon Kim",
+        "author": "Taehoon Kim*, Chanhee Kang*, Jaehyuk Park*, Daun Jeong*, ChangHee Yang*, Suk-Ju Kang†, Kyeongbo Kong†",
+        "confName": "ICCVw",
+        "category": [
+            "Computer Vision",
+            "Generative AI",
+            "SMPL"
+        ],
+        "postscript": "Top-tier AI conference workshop",
+        "international": true,
+        "paperUrl": "https://cveu.github.io/2023/papers/32.pdf",
+        "codeUrl": ""
+    },
+    "202401": {
+        "title": "Human Motion Aware Text-to-Video Generation with Explicit Camera Control",
+        "me": "Taehoon Kim",
+        "author": "Taehoon Kim*, Chanhee Kang*, Jaehyuk Park*, Daun Jeong*, ChangHee Yang*, Suk-Ju Kang†, Kyeongbo Kong†",
+        "confName": "WACV",
+        "category": [
+            "Computer Vision",
+            "Generative AI",
+            "SMPL"
+        ],
+        "postscript": "Second-tier AI conference",
+        "international": true,
+        "paperUrl": "https://openaccess.thecvf.com/content/WACV2024/papers/Kim_Human_Motion_Aware_Text-to-Video_Generation_With_Explicit_Camera_Control_WACV_2024_paper.pdf",
+        "codeUrl": "https://github.com/CSJasper/HMTV"
+    }
+}
