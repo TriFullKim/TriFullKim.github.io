@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob("../../database/posts/*.md");
+  return allPosts.map(post => {
+    return { params: { slug: post.frontmatter?.slug }, props: { post: post } };
+  });
+}
+
+const { post } = Astro.props;
+const { slug } = Astro.params;
+---
+
+<Layout title={post.frontmatter.title}>
+  <main>
+    <div id="title-bar">
+      <h1>{post.frontmatter.title}</h1>
+      <div>{post.frontmatter.date}</div>
+    </div>
+    <Fragment set:html={post.compiledContent()} />
+  </main>
+</Layout>
+<style is:inline>
+  main {
+    width: 600px;
+    margin: auto;
+  }
+  p {
+    margin-bottom: 0.4rem;
+  }
+  #title-bar {
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    justify-content: space-between;
+  }
+
+  #title-bar > h1 {
+    font-weight: 700;
+  }
+</style>
