@@ -1,0 +1,39 @@
+---
+const {
+  src = "./favicon.svg",
+  name = "@Name",
+  mail = "youe@mail.domain",
+  class: className,
+} = Astro.props;
+
+const introduction = "Hello World!";
+---
+
+<div
+  class:list={["HeroBundle flex", "md:flex-row", "flex-col", "p-5", className]}
+>
+  <div class="content-center shrink-0 mr-5">
+    <img src={src} width="150px" />
+  </div>
+  <div class="content-center">
+    <h2>{name}</h2>
+    <slot>
+      <p>{introduction}</p>
+    </slot>
+    <a href={"mailto:" + mail} class="font-mono badge badge-info">
+      {mail}
+    </a>
+  </div>
+</div>
+<style>
+  .HeroBundle {
+    font-size: 1.15rem;
+  }
+  .HeroBundle h2 {
+    font-weight: 700;
+    font-size: 2rem;
+  }
+  .HeroBundle a {
+    font-size: 1rem;
+  }
+</style>

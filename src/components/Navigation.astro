@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import logo from "~/../public/tfk-w.svg";
+---
+
+<nav class="row">
+  <div class="logo">
+    <a href="/"> <Image src={logo} alt={"tfk-logo"} /></a>
+  </div>
+  <ul class="row">
+    <li class="content">
+      <a href="/post">
+        <span class="material-symbols-outlined md:hidden"> sticky_note_2 </span>
+        <span class="hidden md:inline">Post</span>
+      </a>
+    </li>
+    <li class="content">
+      <a href="/topic">
+        <span class="material-symbols-outlined md:hidden"> tag </span>
+        <span class="hidden md:inline">Topic</span>
+      </a>
+    </li>
+    <li class="content">
+      <a href="/about">
+        <span class="material-symbols-outlined md:hidden">
+          account_circle
+        </span>
+        <span class="hidden md:inline">Topic</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<style>
+  * {
+    border: 1px red dotted;
+  }
+  nav {
+    @apply h-14 max-w-[800px] mx-auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .logo {
+    @apply h-14 w-14;
+    align-content: center;
+  }
+  .content {
+    @apply px-4 hover:text-amber-400;
+    align-content: center;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+</style>
