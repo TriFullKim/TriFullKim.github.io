@@ -1,9 +1,11 @@
 ---
+import Navigation from "~/components/Navigation.astro";
+
 interface Props {
   title: string;
 }
 
-const { title, id } = Astro.props;
+const { title = "TriFullKim" } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,10 +15,12 @@ const { title, id } = Astro.props;
     <meta name="description" content="trifullkim dev blog" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="h-full" id={id}>
+  <body class="h-full max-w-[960px] m-auto">
+    <Navigation/>
     <slot />
   </body>
 </html>

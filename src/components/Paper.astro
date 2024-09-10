@@ -1,19 +1,42 @@
 ---
-const { frontmatter } = Astro.props;
+interface Props {
+  title: string;
+  author: Array<string>;
+  me: string;
+  publishedDate: number;
+  confName: string;
+  category: Array<string>;
+  postscript: Array<string>;
+  international: boolean;
+  paperUrl: string;
+  codeUrl: string;
+}
+const {
+  title,
+  author,
+  me,
+  publishedDate,
+  confName,
+  category,
+  postscript,
+  international,
+  paperUrl,
+  codeUrl,
+} = Astro.props;
 
-const year = Math.floor(frontmatter.pubDate / 100);
-const month = frontmatter.pubDate - year * 100;
+const year = Math.floor(publishedDate / 100);
+const month = publishedDate - year * 100;
 const date = new Date(year, month - 1);
-const formattedDate = new Intl.DateTimeFormat("en-US", {
-  year: "numeric",
-  month: "short",
-}).format(date);
+// const formattedDate = new Intl.DateTimeFormat("en-US", {
+//   year: "numeric",
+//   month: "short",
+// }).format(date);
 
-const highlightMe = (author = [], me = "Taehoon Kim") => {
-  let highlightAuthor = {};
-  for (let i = 0; i < author.length; i++) {
-    let authorElement = author[i];
-    if (authorElement.includes(me)) highlightAuthor[authorElement] = true;
+const highlightMe = (author_=author, me = "Taehoon Kim") => {
+  let highlightAuthor = Object();
+  for (let i = 0; i < author_?.length; i++) {
+    const authorElement = author[i];
+    if (authorElement === me) highlightAuthor[authorElement] = true;
     else highlightAuthor[authorElement] = false;
   }
 
@@ -26,25 +49,25 @@ const highlightMe = (author = [], me = "Taehoon Kim") => {
   return innerHTML;
 };
 
-const postscriptExist = !!frontmatter.postscript.length;
-const categoryExist = !!frontmatter.category.length;
+const categoryExist = !!category?.length;
+const postscriptExist = !!postscript?.length;
 ---
 
 <li class="flex flex-row flex-wrap gap-1">
-  <div class="text-xl font-extrabold">{frontmatter.title}</div>
+  <div class="text-xl font-extrabold">{title}</div>
 </li>
 {/*https://docs.astro.build/en/basics/astro-syntax/#fragments*/}
 <li class="test-sm text-gray-500">
-  {(<Fragment set:html={highlightMe(frontmatter.author, frontmatter.me)} />)}
+  {(<Fragment set:html={highlightMe(author, me)} />)}
 </li>
 <li class="flex flex-row gap-2 flex-wrap pt-2">
-  <div class="font-extrabold">{frontmatter.confName}</div>
-  <div>{formattedDate}</div>
+  <div class="font-extrabold">{confName}</div>
+  <div>{date}</div>
   <!-- Draw When p.s. exist -->
   <div class="flex max-sm:flex-wrap gap-1">
     {
       postscriptExist &&
-        frontmatter.postscript.map((data: Date) => (
+        postscript.map(data => (
           <div
             class:list={["badge badge-primary", !postscriptExist && "hidden"]}
           >
@@ -56,21 +79,19 @@ const categoryExist = !!frontmatter.category.length;
   <div class="flex max-sm:flex-wrap gap-1">
     {
       categoryExist &&
-        frontmatter.category.map((data: Date) => (
+        category.map(data => (
           <div class:list={["badge", !categoryExist && "hidden"]}>{data}</div>
         ))
     }
   </div>
   <div class="flex max-sm:flex-wrap gap-1">
     <a
-      href={frontmatter.codeUrl}
-      class=`badge badge-outline ${frontmatter.codeUrl.length === 0 && "hidden"}`
-      >Code</a
+      href={codeUrl}
+      class=`badge badge-outline ${codeUrl?.length === 0 && "hidden"}`>Code</a
     >
     <a
-      href={frontmatter.paperUrl}
-      class=`badge badge-outline ${frontmatter.paperUrl.length === 0 && "hidden"}`
-      >Paper</a
+      href={paperUrl}
+      class=`badge badge-outline ${paperUrl?.length === 0 && "hidden"}`>Paper</a
     >
   </div>
 </li>
