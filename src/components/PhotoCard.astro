@@ -1,0 +1,19 @@
+---
+// import { Image } from "astro:assets";
+interface Props {
+  title: string;
+  src: string;
+  alt: string;
+}
+
+const { title = "Title", src, alt } = Astro.props;
+---
+<li
+  class="flex flex-col sm:flex-row gap-x-8 gap-y-5 sm:place-items-start items-center"
+>
+  <img src={src} alt={alt} class="w-56 object-scale-down" />
+  <div class="self-center">
+    <h2 class="text-xl font-extrabold">{title}</h2>
+    <slot />
+  </div>
+</li>

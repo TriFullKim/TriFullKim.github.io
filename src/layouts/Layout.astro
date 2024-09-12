@@ -3,9 +3,10 @@ import Navigation from "~/components/Navigation.astro";
 
 interface Props {
   title: string;
+  id?: string;
 }
 
-const { title = "TriFullKim" } = Astro.props;
+const { title = "TriFullKim", id = undefined } = Astro.props;
 ---
 
 <!doctype html>
@@ -15,12 +16,15 @@ const { title = "TriFullKim" } = Astro.props;
     <meta name="description" content="trifullkim dev blog" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0"
+    />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="h-full max-w-[960px] m-auto">
-    <Navigation/>
+  <body class="h-full max-w-[960px] m-auto" id={id}>
+    <Navigation />
     <slot />
   </body>
 </html>
@@ -29,6 +33,15 @@ const { title = "TriFullKim" } = Astro.props;
     font-family: pretendard, system-ui, sans-serif;
   }
   #about {
+    @apply bg-slate-900 text-slate-300;
+  }
+  #topic {
+    @apply bg-slate-900 text-slate-300;
+  }
+  #main {
+    @apply bg-slate-900 text-slate-300;
+  }
+  #post {
     @apply bg-slate-900 text-slate-300;
   }
 </style>
