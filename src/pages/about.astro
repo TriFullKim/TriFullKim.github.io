@@ -1,5 +1,5 @@
 ---
-import Card from "~/layouts/MainpageCard.astro";
+import Section from "~/layouts/Section.astro";
 import Layout from "~/layouts/Layout.astro";
 import Publication from "~/widgets/Publication.astro";
 ---
@@ -42,16 +42,16 @@ import Publication from "~/widgets/Publication.astro";
       </div>
     </h1>
     <div class="h-3"></div>
-    <Card title="Education">
+    <Section title="Education">
       <ul class="list-disc px-8">
         <li>B.S. in Electrical Engineering , PKNU, Feb. 2021 – present.</li>
       </ul>
-    </Card>
-    <Card title="Publication">
+    </Section>
+    <Section title="Publication">
       <Publication />
-    </Card>
+    </Section>
     <div class="h-3"></div>
-    <Card title="Design">
+    <Section title="Design">
       <ul class="flex flex-col gap-5 w-full pt-4">
         <li
           class="flex flex-col sm:flex-row gap-x-8 gap-y-5 sm:place-items-start items-center"
@@ -93,7 +93,7 @@ import Publication from "~/widgets/Publication.astro";
           </div>
         </li>
       </ul>
-    </Card>
+    </Section>
   </main>
   <div class="h-24"></div>
 </Layout>
