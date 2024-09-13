@@ -23,9 +23,11 @@ const { title = "TriFullKim", id = undefined } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="h-full max-w-[960px] m-auto" id={id}>
-    <Navigation />
-    <slot />
+  <body id={id} class="min-h-dvh">
+    <main class="max-w-[960px] m-auto">
+      <Navigation />
+      <slot />
+    </main>
   </body>
 </html>
 <style is:global>
@@ -33,15 +35,18 @@ const { title = "TriFullKim", id = undefined } = Astro.props;
     font-family: pretendard, system-ui, sans-serif;
   }
   #about {
-    @apply bg-slate-900 text-slate-300;
+    @apply bg-slate-900 outline outline-8 outline-slate-900 text-slate-300 ;
   }
   #topic {
-    @apply bg-slate-900 text-slate-300;
+    @apply bg-slate-900 outline outline-8  outline-slate-900 text-slate-300;
   }
   #main {
-    @apply bg-slate-900 text-slate-300;
+    @apply bg-slate-900 outline outline-8  outline-slate-900 text-slate-300;
   }
   #post {
-    @apply bg-slate-900 text-slate-300;
+    @apply bg-slate-900 outline outline-8  outline-slate-900 text-slate-300;
+  }
+  body {
+    @apply bg-slate-900 outline outline-8  outline-slate-900 text-slate-300;
   }
 </style>

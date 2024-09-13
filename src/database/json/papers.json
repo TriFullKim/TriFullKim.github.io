@@ -1,0 +1,67 @@
+{
+  "8a988c0b-d095-4984-8bb8-9f2c80b847fc": {
+    "me": "Taehoon Kim",
+    "isInternational": true,
+    "pubDate": [
+      "2024-01-01",
+      null
+    ],
+    "author": "Taehoon Kim*, Chanhee Kang*, Jaehyuk Park*, Daun Jeong*, ChangHee Yang*, Suk-Ju Kang†, Kyeongbo Kong†",
+    "confName": "WACV",
+    "tags": [
+      "Computer Vision",
+      "Generative AI",
+      "SMPL"
+    ],
+    "paperURL": "https://openaccess.thecvf.com/content/WACV2024/papers/Kim_Human_Motion_Aware_Text-to-Video_Generation_With_Explicit_Camera_Control_WACV_2024_paper.pdf",
+    "codeURL": "https://github.com/CSJasper/HMTV",
+    "postscript": "Second-tier AI conference",
+    "pid": "8a988c0b-d095-4984-8bb8-9f2c80b847fc",
+    "title": "Human Motion Aware Text-to-Video Generation with Explicit Camera Control",
+    "slug": "human-motion-aware-text-to-video-generation-with-explicit-camera-control",
+    "last_edited_time": "2024-07-12T17:04:00.000Z"
+  },
+  "863f9223-6959-423b-a67c-c8a0c30368a1": {
+    "me": "Taehoon Kim",
+    "isInternational": true,
+    "pubDate": [
+      "2023-10-01",
+      null
+    ],
+    "author": "Taehoon Kim*, Chanhee Kang*, Jaehyuk Park*, Daun Jeong*, ChangHee Yang*, Suk-Ju Kang†, Kyeongbo Kong†",
+    "confName": "ICCVw",
+    "tags": [
+      "Computer Vision",
+      "Generative AI",
+      "SMPL"
+    ],
+    "paperURL": "https://cveu.github.io/2023/papers/32.pdf",
+    "codeURL": null,
+    "postscript": "Top-tier AI conference workshop",
+    "pid": "863f9223-6959-423b-a67c-c8a0c30368a1",
+    "title": "Text-Based Video Generation With Human Motion and Controllable Camera",
+    "slug": "text-based-video-generation-with-human-motion-and-controllable-camera",
+    "last_edited_time": "2024-07-12T17:04:00.000Z"
+  },
+  "d179420c-e558-4da6-92e6-972f567fe1d1": {
+    "me": "김태훈",
+    "isInternational": false,
+    "pubDate": [
+      "2023-07-01",
+      null
+    ],
+    "author": "김태훈*, 정다운*, 박재혁*, 공경보†",
+    "confName": "IEIE",
+    "tags": [
+      "Computer Vision",
+      "Generative AI"
+    ],
+    "paperURL": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11522273",
+    "codeURL": null,
+    "postscript": "여름학술대회",
+    "pid": "d179420c-e558-4da6-92e6-972f567fe1d1",
+    "title": "휴먼 모션 생성을 통한 텍스트 기반 비디오 생성 알고리즘에 관한 연구",
+    "slug": "휴먼-모션-생성을-통한-텍스트-기반-비디오-생성-알고리즘에-관한-연구",
+    "last_edited_time": "2024-07-12T17:04:00.000Z"
+  }
+}

@@ -1,0 +1,8 @@
+---
+const { class: className } = Astro.props;
+import "~/styles/markdown.css";
+---
+
+<article class={className ? className : "markdown"}>
+    <slot />
+</article>

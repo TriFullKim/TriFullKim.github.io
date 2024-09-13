@@ -1,15 +1,17 @@
 ---
+import moment from 'moment';
+
 interface Props {
   title: string;
-  author: Array<string>;
+  author: string;
   me: string;
-  publishedDate: number;
+  publishedDate: string;
   confName: string;
   category: Array<string>;
-  postscript: Array<string>;
+  postscript: string;
   international: boolean;
-  paperUrl: string;
-  codeUrl: string;
+  paperUrl?: string;
+  codeUrl?: string;
 }
 const {
   title,
@@ -24,29 +26,17 @@ const {
   codeUrl,
 } = Astro.props;
 
-const year = Math.floor(publishedDate / 100);
-const month = publishedDate - year * 100;
-const date = new Date(year, month - 1);
-// const formattedDate = new Intl.DateTimeFormat("en-US", {
-//   year: "numeric",
-//   month: "short",
-// }).format(date);
+// const year = Math.floor(Number(publishedDate[0]) / 100);
+// const month = Number(publishedDate[0]) - year * 100;
+// const date = new Date(year, month - 1);
 
-const highlightMe = (author_=author, me = "Taehoon Kim") => {
-  let highlightAuthor = Object();
-  for (let i = 0; i < author_?.length; i++) {
-    const authorElement = author[i];
-    if (authorElement === me) highlightAuthor[authorElement] = true;
-    else highlightAuthor[authorElement] = false;
-  }
-
-  let innerHTML = "";
-  for (let key in highlightAuthor) {
-    if (true === highlightAuthor[key]) innerHTML += `<strong>${key}</strong> `;
-    else innerHTML += `${key} `;
-  }
-
-  return innerHTML;
+const highlightMe = (authors = author, me = "Taehoon Kim") => {
+  const authorList = authors.split(",");
+  const authorHighlight = (_authors, me) =>
+    _authors.includes(me) ? `<strong>${_authors}</strong>` : _authors;
+  return authorList.map(a => authorHighlight(a, me)).join(",");
+  // const authorList = author_.split(me);
+  // return authorList[0] + `<strong>${me}</strong>` + authorList[-1];
 };
 
 const categoryExist = !!category?.length;
@@ -56,34 +46,13 @@ const postscriptExist = !!postscript?.length;
 <li class="flex flex-row flex-wrap gap-1">
   <div class="text-xl font-extrabold">{title}</div>
 </li>
-{/*https://docs.astro.build/en/basics/astro-syntax/#fragments*/}
 <li class="test-sm text-gray-500">
   {(<Fragment set:html={highlightMe(author, me)} />)}
 </li>
-<li class="flex flex-row gap-2 flex-wrap pt-2">
+<li class="flex flex-row gap-2 flex-wrap pt-2 content-center">
   <div class="font-extrabold">{confName}</div>
-  <div>{date}</div>
+  <div>{moment(publishedDate).format("YYYY, MMM")}</div>
   <!-- Draw When p.s. exist -->
-  <div class="flex max-sm:flex-wrap gap-1">
-    {
-      postscriptExist &&
-        postscript.map(data => (
-          <div
-            class:list={["badge badge-primary", !postscriptExist && "hidden"]}
-          >
-            {data}
-          </div>
-        ))
-    }
-  </div>
-  <div class="flex max-sm:flex-wrap gap-1">
-    {
-      categoryExist &&
-        category.map(data => (
-          <div class:list={["badge", !categoryExist && "hidden"]}>{data}</div>
-        ))
-    }
-  </div>
   <div class="flex max-sm:flex-wrap gap-1">
     <a
       href={codeUrl}
@@ -93,5 +62,22 @@ const postscriptExist = !!postscript?.length;
       href={paperUrl}
       class=`badge badge-outline ${paperUrl?.length === 0 && "hidden"}`>Paper</a
     >
+  </div>
+  <div class="flex max-sm:flex-wrap gap-1">
+    {
+      postscriptExist && (
+        <div class:list={["badge badge-primary", !postscriptExist && "hidden"]}>
+          {postscript}
+        </div>
+      )
+    }
+  </div>
+  <div class="flex max-sm:flex-wrap gap-1">
+    {
+      categoryExist &&
+        category.map(data => (
+          <div class:list={["badge", !categoryExist && "hidden"]}>{data}</div>
+        ))
+    }
   </div>
 </li>

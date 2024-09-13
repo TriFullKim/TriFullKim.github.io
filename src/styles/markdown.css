@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Markdown Style Class */
+
+.markdown-lg {
+    @apply !prose-lg markdown;
+}
+.markdown {
+    @apply !max-w-none prose prose-markdown;
+}
+.li-default {
+    @apply prose-li:my-[0.42rem];
+}
+
+/* Default Markdown Styles */
+
+.prose-markdown {
+    @apply prose-li:my-0 prose-ul:my-0 prose-ol:my-0
+    prose-li:px-0 prose-ul:px-[1.6em]
+    prose-li:leading-relaxed
+    prose-p:my-0 prose-h1:my-2 prose-h2:my-1 prose-h3:my-0
+    prose-code:bg-none
+    prose-a:text-secondary
+    break-all md:break-normal;
+    font-family: Pretendard;
+}
+.contains-task-list {
+    @apply list-none pl-1.5;
+}
+
+.notion-callout {
+    @apply bg-slate-200/80 border-l-4 border-blue-600 rounded-xl p-3;
+}

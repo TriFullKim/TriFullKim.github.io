@@ -1,8 +1,40 @@
 ---
+import PostCard from "~/components/PostCard.astro";
 import Layout from "~/layouts/Layout.astro";
+const allPosts = await Astro.glob("../database/post/*.md");
+function getAllTags(markdown) {
+  const tagArray = markdown.map(md => md.frontmatter.태그);
 
+  let tagArray_ = [];
+  for (const tags of tagArray) tagArray_ = tagArray_.concat(tags);
 
+  const resultTagSet = new Set(tagArray_);
+  return Array.from(resultTagSet);
+}
+function getTaggedPost(tag) {
+  let resultPost = [];
+  for (const post of allPosts)
+    if (post.frontmatter.태그.includes(tag)) resultPost.push(post);
+  return resultPost;
+}
 ---
+
 <Layout title="Topic @TriFullKim" id="topic">
-    topic space
+  {
+    false &&
+      getAllTags(allPosts).map((tag, index) => {
+        return getTaggedPost(tag).map(f => (
+          <>
+            {tag}
+            {index === 0 && <div class="divider m-0">{tag}</div>}
+            <PostCard
+              slug={f.frontmatter.slug}
+              title={f.frontmatter.title}
+              createdTime={f.frontmatter.생성일}
+              tags={f.frontmatter.태그}
+            />
+          </>
+        ));
+      })
+  }
 </Layout>
