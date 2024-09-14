@@ -1,0 +1,29 @@
+---
+import PhotoCard from "~/components/PhotoCard.astro";
+---
+
+<ul class="flex flex-col gap-5 w-full pt-4">
+  <PhotoCard title="EWG Logo Design" src="/EWG_white.png" alt="EWG_LOGO">
+    <p>
+      국립 부경대학교 <a
+        href="https://www.instagram.com/ewg.esports/"
+        class="link decoration-sky-400 hover:text-sky-500"
+        >esports 중앙동아리 EWG</a
+      > 로고 제작
+    </p>
+  </PhotoCard>
+  <div class="divider my-[-0.2rem]"></div>
+  <PhotoCard
+    title="CVSP Lab. Logo Design"
+    src="/CVSP-white@3x.png"
+    alt="CVSP_LOGO"
+  >
+    <p>
+      부산대학교 <a
+        href="https://www.pnu-cvsp.com/"
+        class="link decoration-sky-400 hover:text-sky-500"
+        >Computer Vision & Singal Processing Lab.</a
+      > 로고 제작
+    </p>
+  </PhotoCard>
+</ul>

@@ -1,0 +1,18 @@
+---
+import Layout from '~/layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob("../../database/post/*.md");
+  return allPosts.map(post => {
+    return {
+      params: { topic: post.frontmatter["태그"][0] },
+      // props: {},
+    };
+  });
+}
+const { topic } = Astro.params;
+// const {} = Astro.props;
+---
+<Layout title={topic+" @TriFullKim"} id='post'>
+
+</Layout>

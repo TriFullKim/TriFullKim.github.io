@@ -1,18 +1,27 @@
 ---
 import Paper from "../components/Paper.astro";
+import paper_json from "~/database/json/papers.json"
+// posts.reverse();
 
-const posts = await Astro.glob("../pages/post/publication/*.md");
-posts.reverse();
 ---
-
 <div class="flex flex-col gap-5">
   {
-    posts.map((data, idx) => (
+    Object.values(paper_json).map((data, idx) => (
       <>
         <ul>
-          <Paper frontmatter={data.frontmatter} />
+          <Paper
+            title={data.title}
+            me={data.me}
+            author={data.author}
+            publishedDate={data.pubDate[0]}
+            confName={data.confName}
+            category={data.tags}
+            postscript={data.postscript}
+            paperUrl={data?.paperURL}
+            codeUrl={data?.codeURL}
+          />
         </ul>
-        {!(posts.length === idx + 1) && <div class="divider my-[-1.1rem]" />}
+        {!(Object.values(paper_json).length === idx + 1) && <div class="divider my-[-1.1rem]" />}
       </>
     ))
   }

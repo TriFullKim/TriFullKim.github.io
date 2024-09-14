@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+import logo from "~/../public/tfk-w.svg";
+
+const { class: className } = Astro.props;
+---
+
+<nav class:list={["row", className]}>
+  <div class="logo">
+    <a href="/about"> <Image src={logo} alt={"tfk-logo"} /></a>
+  </div>
+  <ul class="row mr-2">
+    <li class="content">
+      <!-- <a href="/post"> -->
+        <a href="/post">
+        <span class="material-symbols-outlined sm:hidden"> sticky_note_2 </span>
+        <span class="hidden sm:inline">Post</span>
+      </a>
+    </li>
+    <li class="content hidden">
+      <a href="/topic">
+        <span class="material-symbols-outlined sm:hidden"> tag </span>
+        <span class="hidden sm:inline">Topic</span>
+      </a>
+    </li>
+    <li class="content">
+      <a href="/about">
+        <span class="material-symbols-outlined sm:hidden">
+          account_circle
+        </span>
+        <span class="hidden sm:inline">About</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<style>
+  nav {
+    @apply h-20 max-w-[960px] mx-auto my-2;
+    @apply bg-slate-900/60;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .logo {
+    @apply h-12 w-12;
+    @apply mx-4;
+    align-self: center;
+  }
+  .content {
+    @apply px-4 hover:text-amber-400;
+    align-content: center;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+</style>
