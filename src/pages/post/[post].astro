@@ -37,6 +37,7 @@ const { title, content } = Astro.props;
       </h3>
       <div class="divider pt-4 mx-4"></div>
       <Fragment set:html={content.compiledContent()} />
+      <div class="p-4"></div>
     </div>
   </MarkdownCard>
 </Layout>
