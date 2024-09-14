@@ -1,5 +1,6 @@
 ---
-import moment from 'moment';
+import { undefined } from "astro:schema";
+import moment from "moment";
 
 interface Props {
   title: string;
@@ -22,8 +23,8 @@ const {
   category,
   postscript,
   international,
-  paperUrl,
-  codeUrl,
+  paperUrl = undefined,
+  codeUrl = undefined,
 } = Astro.props;
 
 // const year = Math.floor(Number(publishedDate[0]) / 100);
@@ -49,19 +50,25 @@ const postscriptExist = !!postscript?.length;
 <li class="test-sm text-gray-500">
   {(<Fragment set:html={highlightMe(author, me)} />)}
 </li>
-<li class="flex flex-row gap-2 flex-wrap pt-2 content-center">
+<li class="flex flex-row gap-2 flex-wrap pt-2 place-items-center">
   <div class="font-extrabold">{confName}</div>
   <div>{moment(publishedDate).format("YYYY, MMM")}</div>
   <!-- Draw When p.s. exist -->
-  <div class="flex max-sm:flex-wrap gap-1">
-    <a
-      href={codeUrl}
-      class=`badge badge-outline ${codeUrl?.length === 0 && "hidden"}`>Code</a
-    >
-    <a
-      href={paperUrl}
-      class=`badge badge-outline ${paperUrl?.length === 0 && "hidden"}`>Paper</a
-    >
+  <div class="flex max-sm:flex-wrap gap-1 ">
+    {
+      codeUrl != undefined && (
+        <a href={codeUrl} class="badge badge-outline">
+          Code
+        </a>
+      )
+    }
+    {
+      paperUrl != undefined && (
+        <a href={paperUrl} class="badge badge-outline">
+          Paper
+        </a>
+      )
+    }
   </div>
   <div class="flex max-sm:flex-wrap gap-1">
     {

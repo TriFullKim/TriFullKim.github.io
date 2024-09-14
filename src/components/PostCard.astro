@@ -12,30 +12,44 @@ const { slug, title, createdTime, tags } = Astro.props;
 ---
 
 <div class="post-elements">
-  <a href={"post/" + slug}>
+  <a href={"/post/" + slug}>
     <h2>{title}</h2>
+    <div class="post-preview my-1">
+      <p>
+        <slot />
+        ...
+      </p>
+    </div>
   </a>
-  <div class="date-display">{moment(createdTime).format("YYYY/MM/DD")}</div>
-  <ul>
-    {
-      tags.map(tag => (
-        <li class="badge">
-          <a href={"post/" + tag}>{tag}</a>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="flex flex-row place-items-center justify-between">
+    <ul>
+      {
+        tags.map(tag => (
+          <li class="badge">
+            <a href={"/post/" + tag}>{tag}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="date-display">{moment(createdTime).format("YYYY/MM/DD")}</div>
+  </div>
 </div>
 <style>
+  .post-preview {
+    @apply text-slate-400;
+    font-size: 0.9rem;
+  }
   .post-elements > * > h2 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
   }
-  .post-elements > .date-display {
+  .post-elements > * > .date-display {
     @apply text-slate-400;
     font-size: 0.85rem;
   }
   .post-elements {
-    @apply border p-2 rounded-lg;
+    @apply px-5 py-4 rounded-xl border border-slate-600;
+    @apply hover:shadow-md hover:shadow-blue-800/30 hover:border-blue-800;
+    @apply transition;
   }
 </style>

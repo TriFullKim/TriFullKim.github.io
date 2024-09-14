@@ -1,6 +1,6 @@
 ---
-import Navigation from "~/components/Navigation.astro";
-
+import Navigation from "~/layouts/Navigation.astro";
+import Footer from "./Footer.astro";
 interface Props {
   title: string;
   id?: string;
@@ -23,11 +23,12 @@ const { title = "TriFullKim", id = undefined } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body id={id} class="min-h-dvh">
-    <main class="max-w-[960px] m-auto">
+  <body id={id}>
+    <main class="min-h-dvh max-w-[960px] m-auto px-5">
       <Navigation />
       <slot />
     </main>
+    <Footer />
   </body>
 </html>
 <style is:global>
@@ -35,7 +36,7 @@ const { title = "TriFullKim", id = undefined } = Astro.props;
     font-family: pretendard, system-ui, sans-serif;
   }
   #about {
-    @apply bg-slate-900 outline outline-8 outline-slate-900 text-slate-300 ;
+    @apply bg-slate-900 outline outline-8 outline-slate-900 text-slate-300;
   }
   #topic {
     @apply bg-slate-900 outline outline-8  outline-slate-900 text-slate-300;

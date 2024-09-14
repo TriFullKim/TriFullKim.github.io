@@ -2,32 +2,16 @@
 import Layout from "~/layouts/Layout.astro";
 ---
 
-<Layout title="404 @TriFullKim">
-  <div class="page-404">
-    <div id="error-404">
-      <a href="/" class="border-y-4 border-blue-900">404</a>
-    </div>
-    <img src="/tfk-w.svg" alt="white_logo" />
+<Layout title="404 @TriFullKim" id="post">
+  <div class="text-404 flex flex-col px-10 py-10">
+    <a href="/" class="border-y-4  border-blue-900">404</a>
   </div>
 </Layout>
 
 <style>
-  .page-404 {
-    @apply pt-52;
-  }
-  #error-404 {
-    @apply text-blue-500;
-    position: relative;
-    z-index: 1;
-    font-size: 15rem;
-    font-weight: 700;
+  .text-404 {
+    font-size: 25dvw;
     text-align: center;
-  }
-  img {
-    margin: auto;
-    height: 400px;
     position: relative;
-    z-index: 0;
-    top: -24.5rem;
   }
 </style>

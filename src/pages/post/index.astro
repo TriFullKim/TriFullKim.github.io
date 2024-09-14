@@ -2,21 +2,21 @@
 import PostCard from "~/components/PostCard.astro";
 import Layout from "~/layouts/Layout.astro";
 const allPosts = await Astro.glob("../../database/post/*.md");
-const fm = allPosts.map(post => post.frontmatter);
-// moment(post.frontmatter.생성일).format("YYYY/MM/DD")
 ---
 
 <Layout title="Topic @TriFullKim" id="post">
   <main>
     <div class="post-space">
       {
-        fm.map(f => (
+        allPosts.map(post => (
           <PostCard
-            slug={f.slug}
-            title={f.title}
-            createdTime={f.생성일}
-            tags={f.태그}
-          />
+            slug={post.frontmatter.slug}
+            title={post.frontmatter.title}
+            createdTime={post.frontmatter.생성일}
+            tags={post.frontmatter.태그}
+          >
+            <Fragment set:html={post.compiledContent().slice(0, 180)} />
+          </PostCard>
         ))
       }
     </div>
@@ -24,7 +24,7 @@ const fm = allPosts.map(post => post.frontmatter);
 </Layout>
 <style>
   .post-space {
-    @apply grid sm:grid-cols-3 grid-cols-2 gap-3;
+    @apply grid md:grid-cols-2 grid-cols-1 gap-3;
     padding: 10px;
   }
 </style>
