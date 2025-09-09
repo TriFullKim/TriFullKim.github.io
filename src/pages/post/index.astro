@@ -24,7 +24,15 @@ const allPosts = await Astro.glob("../../database/post/*.md");
 </Layout>
 <style>
   .post-space {
-    @apply grid md:grid-cols-2 grid-cols-1 gap-3;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
     padding: 10px;
+  }
+  
+  @media (min-width: 768px) {
+    .post-space {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>

@@ -13,30 +13,32 @@ const { class: className } = Astro.props;
     <li class="content">
       <!-- <a href="/post"> -->
         <a href="/post">
-        <span class="material-symbols-outlined sm:hidden"> sticky_note_2 </span>
-        <span class="hidden sm:inline">Post</span>
+        <span class="material-symbols-outlined sm-hidden"> sticky_note_2 </span>
+        <span class="sm-visible">Post</span>
       </a>
     </li>
     <li class="content hidden">
       <a href="/topic">
-        <span class="material-symbols-outlined sm:hidden"> tag </span>
-        <span class="hidden sm:inline">Topic</span>
+        <span class="material-symbols-outlined sm-hidden"> tag </span>
+        <span class="sm-visible">Topic</span>
       </a>
     </li>
     <li class="content">
       <a href="/about">
-        <span class="material-symbols-outlined sm:hidden">
+        <span class="material-symbols-outlined sm-hidden">
           account_circle
         </span>
-        <span class="hidden sm:inline">About</span>
+        <span class="sm-visible">About</span>
       </a>
     </li>
   </ul>
 </nav>
 <style>
   nav {
-    @apply h-20 max-w-[960px] mx-auto my-2;
-    @apply bg-slate-900/60;
+    height: 5rem;
+    max-width: 960px;
+    margin: 0.5rem auto;
+    background-color: rgba(15, 23, 42, 0.6);
     position: sticky;
     top: 0;
     display: flex;
@@ -46,16 +48,49 @@ const { class: className } = Astro.props;
   }
 
   .logo {
-    @apply h-12 w-12;
-    @apply mx-4;
+    height: 3rem;
+    width: 3rem;
+    margin: 0 1rem;
     align-self: center;
   }
+  
   .content {
-    @apply px-4 hover:text-amber-400;
+    padding: 0 1rem;
     align-content: center;
   }
+  
+  .content:hover {
+    color: #fbbf24;
+  }
+  
   .row {
     display: flex;
     flex-direction: row;
+  }
+  
+  .mr-2 {
+    margin-right: 0.5rem;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .sm-hidden {
+    display: inline;
+  }
+  
+  .sm-visible {
+    display: none;
+  }
+  
+  @media (min-width: 640px) {
+    .sm-hidden {
+      display: none;
+    }
+    
+    .sm-visible {
+      display: inline;
+    }
   }
 </style>

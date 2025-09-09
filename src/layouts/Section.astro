@@ -2,15 +2,47 @@
 const { title } = Astro.props;
 ---
 
-<h1 class="md:max-w-[800px] mx-auto">
-  <div class="p-6 rounded-xl shadow-2xl shadow-blue-950/50">
-    <div class="flex flex-col gap-2 items-start">
-      <p
-        class="text-3xl font-extrabold underline decoration-dashed underline-offset-2 decoration-sky-400"
-      >
+<h1 class="section-title">
+  <div class="section-content">
+    <div class="section-flex">
+      <p class="section-header">
         {title}
       </p>
       <slot />
     </div>
   </div>
 </h1>
+<style>
+  .section-title {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 767px) {
+    .section-title {
+      max-width: 100%;
+    }
+  }
+  
+  .section-content {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.5);
+  }
+  
+  .section-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .section-header {
+    font-size: 1.875rem;
+    font-weight: 800;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-underline-offset: 0.5rem;
+    text-decoration-color: #38bdf8;
+  }
+</style>
