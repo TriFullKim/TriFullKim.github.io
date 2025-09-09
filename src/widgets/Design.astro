@@ -1,9 +1,11 @@
 ---
 import PhotoCard from "~/components/PhotoCard.astro";
+import ewgLogo from "~/assets/EWG_white.png";
+import cvspLogo from "~/assets/CVSP-white@3x.png";
 ---
 
 <ul class="flex flex-col gap-5 w-full pt-4">
-  <PhotoCard title="EWG Logo Design" src="/EWG_white.png" alt="EWG_LOGO">
+  <PhotoCard title="EWG Logo Design" src={ewgLogo} alt="EWG_LOGO">
     <p>
       국립 부경대학교 <a
         href="https://www.instagram.com/ewg.esports/"
@@ -15,7 +17,7 @@ import PhotoCard from "~/components/PhotoCard.astro";
   <div class="divider my-[-0.2rem]"></div>
   <PhotoCard
     title="CVSP Lab. Logo Design"
-    src="/CVSP-white@3x.png"
+    src={cvspLogo}
     alt="CVSP_LOGO"
   >
     <p>

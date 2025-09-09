@@ -2,20 +2,75 @@
 import Navigation from "~/layouts/Navigation.astro";
 import Footer from "./Footer.astro";
 interface Props {
-  title: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  noindex?: boolean;
+  ogType?: string;
+  publishedTime?: string;
   id?: string;
 }
 
-const { title = "TriFullKim", id = undefined } = Astro.props;
+const {
+  title = "TriFullKim",
+  description = "trifullkim dev blog",
+  image = "/CVSP-white@3x.png",
+  canonical,
+  noindex = false,
+  ogType,
+  publishedTime,
+  id = undefined,
+} = Astro.props as Props;
+
+const site = Astro.site?.href ?? "https://blog.trifull.kim";
+const pathname = Astro.url?.pathname;
+const canonicalUrl = (canonical ?? (pathname ? new URL(pathname, site).href : undefined)) ?? site;
+const computedOgType = ogType ?? (id === "post" ? "article" : "website");
+const robotsContent = noindex ? "noindex, nofollow" : "index, follow";
+const imageUrl = image?.startsWith("http") ? image : new URL(image, site).href;
+const jsonLd = computedOgType === "article"
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: title,
+      description,
+      image: imageUrl,
+      mainEntityOfPage: canonicalUrl,
+      author: { "@type": "Person", name: "TriFullKim" },
+      ...(publishedTime ? { datePublished: publishedTime } : {})
+    }
+  : {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: title,
+      url: canonicalUrl,
+      description
+    };
 ---
 
 <!doctype html>
-<html lang="kr">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="trifullkim dev blog" />
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content={robotsContent} />
+    <meta property="og:type" content={computedOgType} />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:site_name" content="TriFullKim" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="theme-color" content="#0f172a" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0"

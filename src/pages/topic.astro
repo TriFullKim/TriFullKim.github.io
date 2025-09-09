@@ -1,20 +1,21 @@
 ---
+import type { MarkdownInstance } from "astro";
 import PostCard from "~/components/PostCard.astro";
 import Layout from "~/layouts/Layout.astro";
 const allPosts = await Astro.glob("../database/post/*.md");
-function getAllTags(markdown) {
-  const tagArray = markdown.map(md => md.frontmatter.태그);
+function getAllTags(markdown: Array<MarkdownInstance<Record<string, any>>>) {
+  const tagArray = markdown.map(md => md.frontmatter.태그 as Array<string>);
 
-  let tagArray_ = [];
+  let tagArray_: string[] = [];
   for (const tags of tagArray) tagArray_ = tagArray_.concat(tags);
 
   const resultTagSet = new Set(tagArray_);
   return Array.from(resultTagSet);
 }
-function getTaggedPost(tag) {
-  let resultPost = [];
+function getTaggedPost(tag: string) {
+  let resultPost: Array<MarkdownInstance<Record<string, any>>> = [];
   for (const post of allPosts)
-    if (post.frontmatter.태그.includes(tag)) resultPost.push(post);
+    if ((post.frontmatter.태그 as Array<string>).includes(tag)) resultPost.push(post);
   return resultPost;
 }
 ---

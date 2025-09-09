@@ -1,17 +1,26 @@
 ---
-// import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 interface Props {
   title: string;
-  src: string;
+  src: any;
   alt: string;
 }
 
-const { title = "Title", src, alt } = Astro.props;
+const { title = "Title", src, alt } = Astro.props as Props;
 ---
 <li
   class="flex flex-col sm:flex-row gap-x-8 gap-y-5 sm:place-items-start items-center"
 >
-  <img src={src} alt={alt} class="w-56 object-scale-down" />
+  <Picture
+    src={src}
+    alt={alt}
+    widths={[224, 336, 448]}
+    sizes="(min-width: 640px) 14rem, 14rem"
+    formats={["avif", "webp", "png"]}
+    class="w-56 object-scale-down"
+    loading="lazy"
+    decoding="async"
+  />
   <div class="self-center">
     <h2 class="text-xl font-extrabold">{title}</h2>
     <slot />

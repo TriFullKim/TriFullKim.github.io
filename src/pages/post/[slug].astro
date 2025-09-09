@@ -12,7 +12,13 @@ const { post } = Astro.props;
 const { slug } = Astro.params;
 ---
 
-<Layout title={post.frontmatter.title + " @TriFullKim"}>
+<Layout
+  title={post.frontmatter.title + " @TriFullKim"}
+  id="post"
+  description={post.frontmatter?.description ?? post.frontmatter?.summary ?? post.frontmatter.title}
+  image={post.frontmatter?.image ?? post.frontmatter?.thumbnail ?? "/CVSP-white@3x.png"}
+  publishedTime={post.frontmatter?.date}
+>
   <main>
     <div id="title-bar">
       <h1>{post.frontmatter.title}</h1>
