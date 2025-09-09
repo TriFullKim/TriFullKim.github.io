@@ -79,7 +79,7 @@ const jsonLd = computedOgType === "article"
     <title>{title}</title>
   </head>
   <body id={id}>
-    <main class="min-h-dvh max-w-[960px] m-auto px-5">
+    <main style="min-height: 100dvh; max-width: 960px; margin: 0 auto; padding: 0 1.25rem;">
       <Navigation />
       <slot />
     </main>
@@ -90,19 +90,18 @@ const jsonLd = computedOgType === "article"
   html {
     font-family: pretendard, system-ui, sans-serif;
   }
-  #about {
-    @apply bg-slate-900 outline outline-8 outline-slate-900 text-slate-300;
-  }
-  #topic {
-    @apply bg-slate-900 outline outline-8  outline-slate-900 text-slate-300;
-  }
-  #main {
-    @apply bg-slate-900 outline outline-8  outline-slate-900 text-slate-300;
-  }
-  #post {
-    @apply bg-slate-900 outline outline-8  outline-slate-900 text-slate-300;
-  }
   body {
-    @apply bg-slate-900 outline outline-8  outline-slate-900 text-slate-300;
+    background-color: #0f172a;
+    outline: 8px solid #0f172a;
+    color: #cbd5e1;
+    font-family: pretendard, system-ui, sans-serif;
+  }
+  #about,
+  #topic,
+  #main,
+  #post {
+    background-color: #0f172a;
+    outline: 8px solid #0f172a;
+    color: #cbd5e1;
   }
 </style>

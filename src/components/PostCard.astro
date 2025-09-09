@@ -21,7 +21,7 @@ const { slug, title, createdTime, tags } = Astro.props;
       </p>
     </div>
   </a>
-  <div class="flex flex-row place-items-center justify-between">
+  <div class="flex-row place-items-center justify-between">
     <ul>
       {
         tags.map(tag => (
@@ -36,20 +36,51 @@ const { slug, title, createdTime, tags } = Astro.props;
 </div>
 <style>
   .post-preview {
-    @apply text-slate-400;
+    color: #94a3b8;
     font-size: 0.9rem;
   }
+  
+  .my-1 {
+    margin: 0.25rem 0;
+  }
+  
   .post-elements > * > h2 {
     font-size: 1.5rem;
     font-weight: 700;
   }
+  
   .post-elements > * > .date-display {
-    @apply text-slate-400;
+    color: #94a3b8;
     font-size: 0.85rem;
   }
+  
+  .date-display {
+    color: #94a3b8;
+    font-size: 0.85rem;
+  }
+  
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .place-items-center {
+    place-items: center;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
   .post-elements {
-    @apply px-5 py-4 rounded-xl border border-slate-600;
-    @apply hover:shadow-md hover:shadow-blue-800/30 hover:border-blue-800;
-    @apply transition;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid #475569;
+    transition: all 0.3s ease;
+  }
+  
+  .post-elements:hover {
+    box-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.3);
+    border-color: #1e40af;
   }
 </style>

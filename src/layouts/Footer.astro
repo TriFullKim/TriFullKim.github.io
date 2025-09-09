@@ -5,7 +5,7 @@ import logo from "~/../public/tfk-w.svg";
 ---
 
 <footer>
-  <div class="max-w-[640px] m-auto row justify-items-center">
+  <div class="footer-content row justify-items-center">
     <div class="logo row gap-2">
       <Image src={logo} alt={"tfk-logo"} />
       <div class="text-logo">TriFullKim</div>
@@ -34,21 +34,41 @@ import logo from "~/../public/tfk-w.svg";
 </footer>
 <style>
   footer {
-    @apply py-7 px-10;
-    @apply bg-slate-950;
+    padding: 1.75rem 2.5rem;
+    background-color: #020617;
   }
+  
+  .footer-content {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  
   h2 {
-      @apply py-2;
-    @apply text-slate-400;
+    padding: 0.5rem 0;
+    color: #94a3b8;
     font-size: small;
   }
-  .row {
-    @apply flex flex-row justify-between;
+  
+  .text-center {
+    text-align: center;
   }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .gap-2 {
+    gap: 0.5rem;
+  }
+  
   .logo {
-    @apply h-8 w-8;
+    height: 2rem;
+    width: 2rem;
     align-self: center;
   }
+  
   .text-logo {
     font-size: 20px;
     font-weight: 700;
