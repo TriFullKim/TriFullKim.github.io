@@ -3,3 +3,4 @@ Disallow: /nogooglebot/
 
 User-agent: *
 Allow: /
+Sitemap: https://blog.trifull.kim/sitemap-index.xml

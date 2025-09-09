@@ -16,7 +16,13 @@ const { post } = Astro.params;
 const { title, content } = Astro.props;
 ---
 
-<Layout title={title + " @TriFullKim"} id="post">
+<Layout
+  title={title + " @TriFullKim"}
+  id="post"
+  description={content.frontmatter?.description ?? content.frontmatter?.요약 ?? title}
+  image={content.frontmatter?.image ?? content.frontmatter?.thumbnail ?? "/CVSP-white@3x.png"}
+  publishedTime={content.frontmatter?.생성일}
+>
   <MarkdownCard>
     <div class="max-w-[800px] m-auto">
       <h2>{title}</h2>
