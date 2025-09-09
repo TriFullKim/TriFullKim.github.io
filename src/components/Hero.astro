@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 const {
   src = "./favicon.svg",
   name = "@Name",
@@ -13,7 +14,11 @@ const introduction = "Hello World!";
   class:list={["HeroBundle flex", "md:flex-row", "flex-col", "p-5", className]}
 >
   <div class="content-center shrink-0 mr-5">
-    <img src={src} width="150px" />
+    {typeof src === "string" ? (
+      <img src={src} width="150px" />
+    ) : (
+      <Image src={src} alt={name} widths={[96, 150, 192]} sizes="150px" />
+    )}
   </div>
   <div class="content-center">
     <h2>{name}</h2>

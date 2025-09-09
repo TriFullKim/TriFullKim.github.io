@@ -13,12 +13,13 @@ import paper_json from "~/database/json/papers.json"
             title={data.title}
             me={data.me}
             author={data.author}
-            publishedDate={data.pubDate[0]}
+            publishedDate={(data.pubDate?.[0] ?? "") as string}
             confName={data.confName}
             category={data.tags}
             postscript={data.postscript}
             paperUrl={data?.paperURL}
-            codeUrl={data?.codeURL}
+            codeUrl={data?.codeURL ?? undefined}
+            international={Boolean(data.isInternational)}
           />
         </ul>
         {!(Object.values(paper_json).length === idx + 1) && <div class="divider my-[-1.1rem]" />}
