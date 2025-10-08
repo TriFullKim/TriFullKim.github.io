@@ -15,7 +15,7 @@ const allPosts = await Astro.glob("../../database/post/*.md");
             createdTime={post.frontmatter.생성일}
             tags={post.frontmatter.태그}
           >
-            <Fragment set:html={post.compiledContent()} />
+            <Fragment set:html={post.compiledContent().slice(0, 180)} />
           </PostCard>
         ))
       }
