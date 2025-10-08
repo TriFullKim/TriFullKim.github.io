@@ -1,21 +1,42 @@
 ---
 import PostCard from "~/components/PostCard.astro";
 import Layout from "~/layouts/Layout.astro";
-const allPosts = await Astro.glob("../../database/post/*.md");
+
+const postEntries = await Astro.glob("../../database/post/*.md");
+
+const posts = await Promise.all(
+  postEntries.map(async post => {
+    const compiled = await post.compiledContent();
+    const compiledString = typeof compiled === "string" ? compiled : String(compiled ?? "");
+    const preview = compiledString
+      .replace(/<[^>]*>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 180);
+
+    return {
+      slug: post.frontmatter.slug,
+      title: post.frontmatter.title,
+      createdTime: post.frontmatter.생성일,
+      tags: Array.isArray(post.frontmatter.태그) ? post.frontmatter.태그 : [],
+      preview,
+    };
+  })
+);
 ---
 
 <Layout title="Topic @TriFullKim" id="post">
   <main>
     <div class="post-space">
       {
-        allPosts.map(post => (
+        posts.map(post => (
           <PostCard
-            slug={post.frontmatter.slug}
-            title={post.frontmatter.title}
-            createdTime={post.frontmatter.생성일}
-            tags={post.frontmatter.태그}
+            slug={post.slug}
+            title={post.title}
+            createdTime={post.createdTime}
+            tags={post.tags}
           >
-            <Fragment set:html={post.compiledContent().slice(0, 180)} />
+            {post.preview}
           </PostCard>
         ))
       }

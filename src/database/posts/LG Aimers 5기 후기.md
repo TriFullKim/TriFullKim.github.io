@@ -2,7 +2,7 @@
 title: LG Aimers 5기 후기
 slug: after-LG-Aimers-5th
 date: 2024-09-01
-indicate: true
+indicate: false
 ---
 LG Aimers는 석학들이 분야에 대해 강의하고, 참가자들이 챌린지를 통해 배운 내용을 실제로 적용해보며, 상위 100팀이 오프라인 해커톤에 진출하는 프로그램이다. 이번 첫 챌린지의 목표는 Phase2(챌린지 수료)였다. 결론적으로 목표를 달성했다. 0.17(private) 정도로 수료 기준을 넘겼지만, 사실 기본기 없이 패기만으로 진행했다.
 
