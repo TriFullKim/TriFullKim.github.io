@@ -7,5 +7,11 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.trifull.kim',
-  integrations: [react(), sitemap(), tailwind()]
+  integrations: [react(), sitemap(), tailwind()],
+  markdown: {
+    shikiConfig: {
+      theme: 'dracula',
+      wrap: true,
+    },
+  },
 });

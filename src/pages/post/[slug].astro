@@ -1,50 +1,85 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from "../../layouts/Layout.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
 
 export async function getStaticPaths() {
-  const allPosts = await Astro.glob("../../database/posts/*.md");
-  return allPosts.map(post => {
-    return { params: { slug: post.frontmatter?.slug }, props: { post: post } };
+  const posts = await getCollection('blog');
+  
+  // Sort posts by date for next/prev navigation
+  posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  
+  return posts.map((post, index) => {
+    const prevPost = index + 1 < posts.length ? posts[index + 1] : undefined;
+    const nextPost = index > 0 ? posts[index - 1] : undefined;
+    
+    return { 
+      params: { slug: post.slug }, 
+      props: { post, prevPost, nextPost } 
+    };
   });
 }
 
-const { post } = Astro.props;
-const { slug } = Astro.params;
+const { post, prevPost, nextPost } = Astro.props;
+const { Content, headings } = await post.render();
 ---
 
 <Layout
-  title={post.frontmatter.title + " @TriFullKim"}
+  title={post.data.title + " @TriFullKim"}
   id="post"
-  description={post.frontmatter?.description ?? post.frontmatter?.summary ?? post.frontmatter.title}
-  image={post.frontmatter?.image ?? post.frontmatter?.thumbnail ?? "/CVSP-white@3x.png"}
-  publishedTime={post.frontmatter?.date}
+  description={post.data.description ?? post.data.summary ?? post.data.title}
+  image={post.data.image ?? "/CVSP-white@3x.png"}
+  publishedTime={post.data.date.toISOString()}
 >
-  <main>
-    <div id="title-bar">
-      <h1>{post.frontmatter.title}</h1>
-      <div>{post.frontmatter.date}</div>
-    </div>
-    <Fragment set:html={post.compiledContent()} />
+  <main class="container mx-auto px-4 max-w-4xl grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-8">
+    <article>
+      <div id="title-bar" class="mb-8">
+        <h1 class="text-3xl font-bold mb-2">{post.data.title}</h1>
+        <div class="text-gray-500 mb-4">{post.data.date.toLocaleDateString()}</div>
+        {post.data.tags && (
+          <div class="flex flex-wrap gap-2">
+            {post.data.tags.map((tag) => (
+              <a href={`/tags/${tag}?from=${post.slug}`} class="tag-badge">#{tag}</a>
+            ))}
+          </div>
+        )}
+      </div>
+      
+      <div class="prose dark:prose-invert max-w-none">
+        <Content />
+      </div>
+
+      <hr class="my-8 border-gray-200 dark:border-gray-700" />
+
+      <div class="flex justify-between items-center text-sm">
+        <div class="text-left w-1/2 pr-2">
+          {prevPost && (
+            <a href={`/post/${prevPost.slug}`} class="block group">
+              <span class="text-gray-500 block text-xs group-hover:text-primary mb-1">← Previous</span>
+              <span class="group-hover:text-primary transition-colors truncate block">{prevPost.data.title}</span>
+            </a>
+          )}
+        </div>
+        <div class="text-right w-1/2 pl-2">
+          {nextPost && (
+            <a href={`/post/${nextPost.slug}`} class="block group">
+              <span class="text-gray-500 block text-xs group-hover:text-primary mb-1">Next →</span>
+              <span class="group-hover:text-primary transition-colors truncate block">{nextPost.data.title}</span>
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+    
+    <aside class="hidden lg:block">
+      <div class="sticky top-8">
+        <h2 class="text-sm font-bold uppercase text-gray-500 mb-4">On this page</h2>
+        <TableOfContents headings={headings} />
+      </div>
+    </aside>
   </main>
 </Layout>
-<style is:inline>
-  main {
-    width: 600px;
-    margin: auto;
-  }
-  p {
-    margin-bottom: 0.4rem;
-  }
-  #title-bar {
-    display: flex;
-    flex-direction: row;
-    font-size: 18px;
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-    justify-content: space-between;
-  }
 
-  #title-bar > h1 {
-    font-weight: 700;
-  }
+<style>
+  /* Optional: Enhance styles if needed, otherwise using Tailwind classes */
 </style>

@@ -26,32 +26,34 @@ const {
 
 const site = Astro.site?.href ?? "https://blog.trifull.kim";
 const pathname = Astro.url?.pathname;
-const canonicalUrl = (canonical ?? (pathname ? new URL(pathname, site).href : undefined)) ?? site;
+const canonicalUrl =
+  canonical ?? (pathname ? new URL(pathname, site).href : undefined) ?? site;
 const computedOgType = ogType ?? (id === "post" ? "article" : "website");
 const robotsContent = noindex ? "noindex, nofollow" : "index, follow";
 const imageUrl = image?.startsWith("http") ? image : new URL(image, site).href;
-const jsonLd = computedOgType === "article"
-  ? {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: title,
-      description,
-      image: imageUrl,
-      mainEntityOfPage: canonicalUrl,
-      author: { "@type": "Person", name: "TriFullKim" },
-      ...(publishedTime ? { datePublished: publishedTime } : {})
-    }
-  : {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      name: title,
-      url: canonicalUrl,
-      description
-    };
+const jsonLd =
+  computedOgType === "article"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: title,
+        description,
+        image: imageUrl,
+        mainEntityOfPage: canonicalUrl,
+        author: { "@type": "Person", name: "TriFullKim" },
+        ...(publishedTime ? { datePublished: publishedTime } : {}),
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: title,
+        url: canonicalUrl,
+        description,
+      };
 ---
 
 <!doctype html>
-<html lang="ko">
+<html lang="ko" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -71,7 +73,7 @@ const jsonLd = computedOgType === "article"
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
     <meta name="theme-color" content="#0f172a" />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link
       rel="stylesheet"
       as="style"
@@ -86,29 +88,12 @@ const jsonLd = computedOgType === "article"
     <title>{title}</title>
   </head>
   <body id={id}>
-    <main style="min-height: 100dvh; max-width: 960px; margin: 0 auto; padding: 0 1.25rem;">
+    <main
+      style="min-height: 100dvh; max-width: 960px; margin: 0 auto; padding: 0 1.25rem;"
+    >
       <Navigation />
       <slot />
     </main>
     <Footer />
   </body>
 </html>
-<style is:global>
-  html {
-    font-family: pretendard, system-ui, sans-serif;
-  }
-  body {
-    background-color: #0f172a;
-    outline: 8px solid #0f172a;
-    color: #cbd5e1;
-    font-family: pretendard, system-ui, sans-serif;
-  }
-  #about,
-  #topic,
-  #main,
-  #post {
-    background-color: #0f172a;
-    outline: 8px solid #0f172a;
-    color: #cbd5e1;
-  }
-</style>

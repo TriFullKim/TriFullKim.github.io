@@ -1,41 +1,21 @@
 ---
-import type { MarkdownInstance } from "astro";
-import PostCard from "~/components/PostCard.astro";
+import { getCollection } from 'astro:content';
 import Layout from "~/layouts/Layout.astro";
-const allPosts = await Astro.glob("../database/post/*.md");
-function getAllTags(markdown: Array<MarkdownInstance<Record<string, any>>>) {
-  const tagArray = markdown.map(md => md.frontmatter.태그 as Array<string>);
 
-  let tagArray_: string[] = [];
-  for (const tags of tagArray) tagArray_ = tagArray_.concat(tags);
-
-  const resultTagSet = new Set(tagArray_);
-  return Array.from(resultTagSet);
-}
-function getTaggedPost(tag: string) {
-  let resultPost: Array<MarkdownInstance<Record<string, any>>> = [];
-  for (const post of allPosts)
-    if ((post.frontmatter.태그 as Array<string>).includes(tag)) resultPost.push(post);
-  return resultPost;
-}
+const allPosts = await getCollection('blog');
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))];
 ---
 
 <Layout title="Topic @TriFullKim" id="topic">
-  {
-    false &&
-      getAllTags(allPosts).map((tag, index) => {
-        return getTaggedPost(tag).map(f => (
-          <>
-            {tag}
-            {index === 0 && <div class="divider m-0">{tag}</div>}
-            <PostCard
-              slug={f.frontmatter.slug}
-              title={f.frontmatter.title}
-              createdTime={f.frontmatter.생성일}
-              tags={f.frontmatter.태그}
-            />
-          </>
-        ));
-      })
-  }
+  <main class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-6">Topics</h1>
+    <div class="flex flex-wrap gap-4">
+        {allTags.map(tag => (
+            <a href={`/tags/${tag}`} class="card bg-base-200 shadow-xl hover:bg-base-300 transition-colors p-6">
+                <h2 class="card-title">#{tag}</h2>
+                <p>{allPosts.filter(p => p.data.tags.includes(tag)).length} posts</p>
+            </a>
+        ))}
+    </div>
+  </main>
 </Layout>
