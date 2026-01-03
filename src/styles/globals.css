@@ -79,6 +79,23 @@
 }
 
 @layer components {
+  /* Dark mode prose typography - ensure text contrast */
+  .dark .prose {
+    --tw-prose-body: hsl(var(--foreground));
+    --tw-prose-headings: hsl(var(--foreground));
+    --tw-prose-lead: hsl(var(--muted-foreground));
+    --tw-prose-links: hsl(var(--primary));
+    --tw-prose-bold: hsl(var(--foreground));
+    --tw-prose-counters: hsl(var(--muted-foreground));
+    --tw-prose-bullets: hsl(var(--muted-foreground));
+    --tw-prose-hr: hsl(var(--border));
+    --tw-prose-quotes: hsl(var(--foreground));
+    --tw-prose-quote-borders: hsl(var(--border));
+    --tw-prose-captions: hsl(var(--muted-foreground));
+    --tw-prose-th-borders: hsl(var(--border));
+    --tw-prose-td-borders: hsl(var(--border));
+  }
+
   /* Improve code block contrast in prose with high specificity and !important for Shiki overrides */
   .prose :where(code):not(:where([class~="not-prose"] *)) {
     @apply bg-muted/50 rounded px-1 py-0.5 text-foreground font-mono;
