@@ -1,56 +1,8 @@
 ---
-import Section from "~/layouts/Section.astro";
 import Layout from "~/layouts/Layout.astro";
-import Publication from "~/widgets/Publication.astro";
-import Design from "~/widgets/Design.astro";
+import HomeProfile from "~/components/HomeProfile.astro";
 ---
 
 <Layout title="About" id="about">
-  <main>
-    <div class="h-3"></div>
-  </main>
-  <Section title="@TriFullKim">
-    <div class="text-lg self-center">
-      <p>
-        I am currently pursuing a <b
-          >Master's degree in Electrical Engineering at Pusan National
-          University</b
-        >. I conduct research under the supervision of <b
-          >Professor Kyeongbo Kong</b
-        > at the <a href="https://www.pnu-cvsp.com/" class="link decoration-sky-400 hover:text-sky-500">Computer Vision and Signal Processing Lab.</a><br />
-        My primary research interests lie in <b>Object Detection</b> and <b
-          >3D Representation</b
-        >, and I am actively engaged in in-depth studies within these areas.
-      </p>
-    </div>
-    <div class="flex flex-row flex-wrap justify-items-center gap-2">
-      <a href="mailto:mail@trifull.kim" class="font-mono badge badge-neutral"
-        >mail@trifull.kim</a
-      >
-      <div class="flex flex-row gap-1">
-        <a href="https://www.pnu-cvsp.com/" class="font-mono badge badge-info"
-          >CVSP Lab.</a
-        >
-        <a
-          href="https://github.com/TriFullKim"
-          class="font-mono badge badge-info">Github</a
-        >
-      </div>
-    </div>
-  </Section>
-  <div class="h-3"></div>
-  <Section title="Education">
-    <ul class="list-disc px-8">
-      <li>M.S. in Electrical Engineering , PNU, Aug. 2025 – present.</li>
-      <li>B.S. in Electrical Engineering , PKNU, Feb. 2021 – Aug. 2025.</li>
-    </ul>
-  </Section>
-  <Section title="Publication">
-    <Publication />
-  </Section>
-  <div class="h-3"></div>
-  <Section title="Design">
-    <Design />
-  </Section>
-  <div class="h-24"></div>
+  <HomeProfile />
 </Layout>

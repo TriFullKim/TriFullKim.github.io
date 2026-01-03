@@ -53,17 +53,17 @@ const postscriptExist = !!postscript?.length;
   <div class="font-extrabold">{confName}</div>
   <div>{moment(publishedDate).format("YYYY, MMM")}</div>
   <!-- Draw When p.s. exist -->
-  <div class="flex max-sm:flex-wrap gap-1 ">
+  <div class="flex max-sm:flex-wrap gap-1">
     {
       codeUrl != undefined && (
-        <a href={codeUrl} class="badge badge-outline">
+        <a href={codeUrl} class="paper-btn">
           Code
         </a>
       )
     }
     {
       paperUrl != undefined && (
-        <a href={paperUrl} class="badge badge-outline">
+        <a href={paperUrl} class="paper-btn">
           Paper
         </a>
       )
@@ -72,7 +72,7 @@ const postscriptExist = !!postscript?.length;
   <div class="flex max-sm:flex-wrap gap-1">
     {
       postscriptExist && (
-        <div class:list={["badge badge-primary", !postscriptExist && "hidden"]}>
+        <div class="paper-badge-primary">
           {postscript}
         </div>
       )
@@ -82,7 +82,7 @@ const postscriptExist = !!postscript?.length;
     {
       categoryExist &&
         category.map(data => (
-          <div class:list={["badge", !categoryExist && "hidden"]}>{data}</div>
+          <div class="paper-badge">{data}</div>
         ))
     }
   </div>
