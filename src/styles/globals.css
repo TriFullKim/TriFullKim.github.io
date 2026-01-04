@@ -79,20 +79,29 @@
 }
 
 @layer components {
-  /* Improve code block contrast in prose with high specificity and !important for Shiki overrides */
-  .prose :where(code):not(:where([class~="not-prose"] *)) {
-    @apply bg-muted/50 rounded px-1 py-0.5 text-foreground font-mono;
+  /* Inline code styling (not in pre blocks) */
+  .prose :where(code):not(:where(pre *, [class~="not-prose"] *)) {
+    padding: 0.2rem 0.4rem !important;
+    font-size: 0.875rem !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    background-color: #3b4252 !important;
+    color: #88c0d0 !important;
+    border-radius: 0.25rem !important;
+    border: 1px solid #4c566a !important;
   }
 
+  /* Code block container - preserve Shiki/Dracula theme */
   .prose :where(pre):not(:where([class~="not-prose"] *)) {
-    @apply bg-secondary/50 border border-border p-4 rounded-lg;
-    background-color: hsl(var(--secondary)) !important;
+    @apply p-4 rounded-lg overflow-x-auto my-4;
+    background-color: #282a36 !important;
+    border: 1px solid #44475a;
   }
 
+  /* Code inside pre - let Shiki handle syntax highlighting */
   .prose :where(pre code):not(:where([class~="not-prose"] *)) {
-    @apply bg-transparent p-0 text-foreground border-0;
-    color: hsl(var(--foreground)) !important;
-    background-color: transparent !important;
+    @apply bg-transparent p-0 border-0 text-sm;
+    color: inherit;
+    border: none !important;
   }
 
   /* Modern button styles */
@@ -205,4 +214,29 @@ html, body {
   padding: 0 !important;
   border: none !important;
   background-color: hsl(var(--background)) !important;
+}
+
+/* Custom scrollbar with point color */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #60a5fa;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #1e293b;
 }
