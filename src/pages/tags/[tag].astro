@@ -25,7 +25,7 @@ const { posts } = Astro.props;
     <ul class="space-y-4">
       {posts.map((post) => (
         <li class="border-b border-gray-200 dark:border-gray-700 last:border-0 pb-4 last:pb-0">
-          <a href={`/post/${post.slug}`} class="block group">
+          <a href={`/post/${post.id}`} class="block group">
             <h2 class="text-xl font-semibold group-hover:text-primary transition-colors">{post.data.title}</h2>
             <div class="text-gray-500 text-sm mt-1">{post.data.date.toLocaleDateString()}</div>
              {post.data.description && <p class="text-gray-600 dark:text-gray-300 mt-2">{post.data.description}</p>}

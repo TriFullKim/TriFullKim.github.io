@@ -13,10 +13,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture
 
-This is an Astro 5 static site with React components, Tailwind CSS, and DaisyUI.
+This is an Astro 7 static site with React components, Tailwind CSS, and DaisyUI.
 
 **Stack:**
-- Astro 5 with React integration for interactive components
+- Astro 7 with React integration for interactive components
 - Tailwind CSS + DaisyUI + shadcn/ui components
 - TypeScript
 - Pretendard font (Korean) + Source Code Pro (code blocks)

@@ -51,12 +51,12 @@ function getPreview(body: string, maxLength: number = 150): string {
       {
         page.data.map(post => (
           <PostCard
-            slug={post.slug}
+            slug={post.id}
             title={post.data.title}
             createdTime={post.data.date.toISOString()}
             tags={post.data.tags}
           >
-            {post.data.description || post.data.summary || getPreview(post.body)}
+            {post.data.description || post.data.summary || getPreview(post.body ?? "")}
           </PostCard>
         ))
       }
