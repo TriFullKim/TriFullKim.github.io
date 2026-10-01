@@ -39,7 +39,7 @@ Blog posts support bilingual frontmatter (English/Korean field names):
 
 **Styling:**
 - Dark mode always on (`<html class="dark">`)
-- CSS variables with HSL colors defined in `src/styles/globals.css`
+- Tailwind CSS v4 (via `@tailwindcss/vite`): theme, plugins (typography, DaisyUI dark theme) and CSS variables (HSL) all live in `src/styles/globals.css` — there is no `tailwind.config`
 - Path aliases: `~/` and `@/` map to `src/`
 
 **Deployment:**
