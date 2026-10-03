@@ -13,10 +13,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture
 
-This is an Astro 5 static site with React components, Tailwind CSS, and DaisyUI.
+This is an Astro 7 static site with React components, Tailwind CSS, and DaisyUI.
 
 **Stack:**
-- Astro 5 with React integration for interactive components
+- Astro 7 with React integration for interactive components
 - Tailwind CSS + DaisyUI + shadcn/ui components
 - TypeScript
 - Pretendard font (Korean) + Source Code Pro (code blocks)
@@ -39,7 +39,7 @@ Blog posts support bilingual frontmatter (English/Korean field names):
 
 **Styling:**
 - Dark mode always on (`<html class="dark">`)
-- CSS variables with HSL colors defined in `src/styles/globals.css`
+- Tailwind CSS v4 (via `@tailwindcss/vite`): theme, plugins (typography, DaisyUI dark theme) and CSS variables (HSL) all live in `src/styles/globals.css` — there is no `tailwind.config`
 - Path aliases: `~/` and `@/` map to `src/`
 
 **Deployment:**

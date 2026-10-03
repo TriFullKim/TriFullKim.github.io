@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from "../../layouts/Layout.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 
@@ -14,14 +14,14 @@ export async function getStaticPaths() {
     const nextPost = index > 0 ? posts[index - 1] : undefined;
     
     return { 
-      params: { slug: post.slug }, 
+      params: { slug: post.id }, 
       props: { post, prevPost, nextPost } 
     };
   });
 }
 
 const { post, prevPost, nextPost } = Astro.props;
-const { Content, headings } = await post.render();
+const { Content, headings } = await render(post);
 ---
 
 <Layout
@@ -39,7 +39,7 @@ const { Content, headings } = await post.render();
         {post.data.tags && (
           <div class="flex flex-wrap gap-2">
             {post.data.tags.map((tag) => (
-              <a href={`/tags/${tag}?from=${post.slug}`} class="tag-badge">#{tag}</a>
+              <a href={`/tags/${tag}?from=${post.id}`} class="tag-badge">#{tag}</a>
             ))}
           </div>
         )}
@@ -54,7 +54,7 @@ const { Content, headings } = await post.render();
       <div class="flex justify-between items-center text-sm">
         <div class="text-left w-1/2 pr-2">
           {prevPost && (
-            <a href={`/post/${prevPost.slug}`} class="block group">
+            <a href={`/post/${prevPost.id}`} class="block group">
               <span class="text-gray-500 block text-xs group-hover:text-primary mb-1">← Previous</span>
               <span class="group-hover:text-primary transition-colors truncate block">{prevPost.data.title}</span>
             </a>
@@ -62,7 +62,7 @@ const { Content, headings } = await post.render();
         </div>
         <div class="text-right w-1/2 pl-2">
           {nextPost && (
-            <a href={`/post/${nextPost.slug}`} class="block group">
+            <a href={`/post/${nextPost.id}`} class="block group">
               <span class="text-gray-500 block text-xs group-hover:text-primary mb-1">Next →</span>
               <span class="group-hover:text-primary transition-colors truncate block">{nextPost.data.title}</span>
             </a>
